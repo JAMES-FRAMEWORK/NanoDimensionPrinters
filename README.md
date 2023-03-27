@@ -1,4 +1,4 @@
-# Scripts to Automate Nano-Dinension Printers.
+# Scripts to Automate Nano-Dimension Printers.
 This branch contains a collection of scripts designed to automate and simplify the use of the Nano-Dimension printer.
 
 # License
