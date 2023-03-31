@@ -1,4 +1,4 @@
-# Print Job Log Collector
+# Ink data collector
 This script collects and store inks load cells values.
 
 # Dependencies
