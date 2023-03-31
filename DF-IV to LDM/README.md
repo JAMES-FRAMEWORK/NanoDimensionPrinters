@@ -1,4 +1,4 @@
-# df4 to LDM adaptor
+# DF-IV to LDM adaptor
 This script change the chosen file to meet the requirements of LDM machine .
 it means you can slice in FLIGHT SW and after post process by this script you can use the file on LDM machines.
 # Dependencies
