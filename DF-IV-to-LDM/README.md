@@ -11,12 +11,12 @@ This script requires the following dependencies:
 - zipfile
 # Installation
 - Install Python 3.
-- Install pandas by running pip install pandas in the command line.
-- Install PyQt6 by running pip install PyQt6 in the command line.
+- Install pandas by running `pip install pandas` in the command line.
+- Install PyQt6 by running `pip install PyQt6` in the command line.
 # Usage
 - Run the file you will se a simple UI.
 - Browse for 'yourPrintJobFile.pcbjc', and select it.
-- Press change button and wait untill succesfull message will apear. 
-- The output file will bee with the same name and in the same directory.
+- Press change button and wait until successful message will appear. 
+- The output file will be with the same name and in the same directory.
 # License
 This project is licensed under the MIT License - see the LICENSE file for details.
