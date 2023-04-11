@@ -110,23 +110,30 @@ def upgrade_resolution():
             key, value = line.split('=')
             data[key] = value
     # Update the parameter value depent on the PJ resolution and create a log of ST changes.
-    old = data['ConductorSliceThicknessInUMCoupon']
+    oldCI = data['ConductorSliceThicknessInUMCoupon']
+    oldDI = data['InsulatorSliceThicknessInUMCoupon']
     if float(data['ConductorSliceThicknessInUMCoupon'])<0.8 and ci_resolution['PrintAxis']==36:
-        ui.textBrowser.setPlainText('Everything ok you set to 36um resolution, you can print now.')
+        ui.textBrowser.setPlainText('Everything ok you set to 36um resolution on the machine, you can print now.')
         
     elif float(data['ConductorSliceThicknessInUMCoupon'])<0.8 and ci_resolution['PrintAxis']==18:
         data['ConductorSliceThicknessInUMCoupon'] = float(data['ConductorSliceThicknessInUMCoupon']) * 4
+        data['InsulatorSliceThicknessInUMCoupon'] = float(data['InsulatorSliceThicknessInUMCoupon']) * 4
         ui.textBrowser.setPlainText('machine resolution updated to 18um, you can print now.')
         with open('C:\\DragonFly\\Conf\\ST_changes.cfg', 'a') as f:
-            f.write('\nOn '+date_string +' changed from '+ str(old)+'changed to ' +str(data['ConductorSliceThicknessInUMCoupon']))
+            f.write('\nOn '+date_string +' CI ST changed from '+ str(oldCI)+' changed to ' +str(data['ConductorSliceThicknessInUMCoupon']))
+            f.write('\nOn '+date_string +' DI ST changed from '+ str(oldDI)+' changed to ' +str(data['InsulatorSliceThicknessInUMCoupon']))
     elif float(data['ConductorSliceThicknessInUMCoupon'])>0.8 and ci_resolution['PrintAxis']==18:
         ui.textBrowser.setPlainText('machine resolution is already 18um, you can print now.')
          
     elif float(data['ConductorSliceThicknessInUMCoupon'])>0.8 and ci_resolution['PrintAxis']==36:
         data['ConductorSliceThicknessInUMCoupon'] = float(data['ConductorSliceThicknessInUMCoupon']) / 4
+        data['InsulatorSliceThicknessInUMCoupon'] = float(data['InsulatorSliceThicknessInUMCoupon']) / 4
+
         ui.textBrowser.setPlainText('machine resolution updated to 36um, you can print now.')
         with open('C:\\DragonFly\\Conf\\ST_changes.cfg', 'a') as f:
-            f.write('\nOn '+date_string +' changed from '+ str(old)+'changed to ' +str(data['ConductorSliceThicknessInUMCoupon']))
+            f.write('\nOn '+date_string +' CI ST changed from '+ str(oldCI)+'changed to ' +str(data['ConductorSliceThicknessInUMCoupon']))
+            f.write('\nOn '+date_string +' DI ST changed from '+ str(oldDI)+'changed to ' +str(data['InsulatorSliceThicknessInUMCoupon']))
+
     else:
         return
     
