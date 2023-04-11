@@ -1,8 +1,6 @@
 # Imports
 import zipfile
-import os
 import sys
-import json
 import datetime
 import pandas as pd
 from PyQt6 import QtCore, QtGui, QtWidgets
@@ -16,16 +14,19 @@ from UI_Main import Ui_MainWindow
 
 def read_resolution(file_path):
     """
-    Extracts the `pcbj.info` file from a zip archive and modifies its contents by removing the 'Recipe' key and the 
-    'LayerStartPosZInUM' attribute from each layer. The modified data is then saved back to the archive as 
-    'pcbj.info' file. If the archive does not contain a 'pcbj.info' file or if it is in a strange file version 
-    (no 'Recipe' parameter), it returns the original data.
+    Reads the resolution information from a Dragonfly project 
+    file and a machine calibration file.
     
-    Args:
-        file_path (str): The full path to the zip archive.
+    Parameters
+    ----------
+    file_path : str
+        The path to the Dragonfly project file to read.
     
-    Returns:
-        dict: The modified or original data, as a dictionary.
+    Returns
+    -------
+    dict or None
+        A dictionary containing the resolution information read from the project file,
+        or None if the project file has no 'Resolution' parameter.
     """
     try:
         global ci_resolution
