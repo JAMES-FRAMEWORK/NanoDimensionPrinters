@@ -76,23 +76,23 @@
      </rect>
     </property>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>10</y>
-      <width>41</width>
-      <height>41</height>
+      <x>410</x>
+      <y>20</y>
+      <width>71</width>
+      <height>71</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/logo/logo.png);</string>
+    <property name="text">
+     <string/>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+    <property name="pixmap">
+     <pixmap resource="jlogo.qrc">:/logo.png</pixmap>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -109,7 +109,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../resolution_changer/logo/logo.qrc"/>
+  <include location="jlogo.qrc"/>
  </resources>
  <connections/>
 </ui>

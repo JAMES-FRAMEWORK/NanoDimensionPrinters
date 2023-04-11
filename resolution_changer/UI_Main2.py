@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.textBrowser.setGeometry(QtCore.QRect(30, 51, 256, 91))
         self.textBrowser.setObjectName("textBrowser")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(440, 10, 41, 41))
+        self.frame.setGeometry(QtCore.QRect(300, 100, 41, 41))
         self.frame.setStyleSheet("image: url(:/logo/logo.bmp);")
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -52,16 +52,9 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Browse file"))
-        self.pushButton_2.setText(_translate("MainWindow", "change"))
+        self.pushButton_2.setText(_translate("MainWindow", "change res"))
         self.pushButton_3.setText(_translate("MainWindow", "exit"))
         self.label.setText(_translate("MainWindow", "PCBJC File Path"))
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec())
+    
