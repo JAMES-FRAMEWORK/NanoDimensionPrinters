@@ -7,12 +7,10 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtGui import QImage, QPixmap
 import myresources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        # QtCore.QDir.addSearchPath('icons', '\\logo\\')
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 192)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -35,9 +33,13 @@ class Ui_MainWindow(object):
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(410, 20, 71, 71))
         self.label_2.setText("")
-        self.label_2.setPixmap(QPixmap(":logo.png"))
+        self.label_2.setPixmap(QtGui.QPixmap(":/logo.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
+        self.backup = QtWidgets.QPushButton(self.centralwidget)
+        self.backup.setGeometry(QtCore.QRect(300, 85, 75, 23))
+        self.backup.setWhatsThis("")
+        self.backup.setObjectName("backup")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 500, 21))
@@ -57,13 +59,14 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "change"))
         self.pushButton_3.setText(_translate("MainWindow", "exit"))
         self.label.setText(_translate("MainWindow", "PCBJC File Path"))
+        self.backup.setText(_translate("MainWindow", "backup"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ui = Ui_MainWindow()
+#     ui.setupUi(MainWindow)
+#     MainWindow.show()
+#     sys.exit(app.exec())

@@ -2,6 +2,8 @@
 import zipfile
 import sys
 import datetime
+import shutil
+import os
 import pandas as pd
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QApplication
@@ -10,7 +12,40 @@ from UI_Main import Ui_MainWindow
 
 
 
+def move_file():
+    """
+    Move a file to the specified destination directory.
 
+    Parameters
+    ----------
+    file_path : str
+        The path to the file to move.
+    destination_dir : str
+        The path to the directory to move the file to.
+
+    Returns
+    -------
+    str
+        The new path of the file in its destination directory.
+    """
+    global file_path
+    global destination_dir
+    # Get the file name from the file path
+    file_name = os.path.basename(file_path)
+    
+    # Create the destination directory if it doesn't exist
+    os.makedirs(destination_dir, exist_ok=True)
+    # take care of date
+    now = datetime.datetime.now()
+    date_string = now.strftime("%Y-%m-%d %H_%M_%S")
+    # Move the file to the destination directory
+    file_name = date_string+ ' - '+ file_name
+    new_file_path = os.path.join(destination_dir, file_name)
+    shutil.copy(file_path, new_file_path)
+    ui.textBrowser.setPlainText('the backup file stored in: \n"C:\\DragonFly\\Conf\\backup"')
+
+    # Return the new file path
+    return new_file_path
 
 def read_resolution(file_path):
     """
@@ -142,6 +177,7 @@ def upgrade_resolution():
 
     with open(path, 'w') as f:
         f.write(config_str)
+    ui.textBrowser.append('changes log is saved in \n"C:\\DragonFly\\Conf\\ST_changes.cfg"')
     
 def choose_file_and_read_resolution():
     file_path = browse_files()
@@ -161,7 +197,8 @@ def finish():
 # Main Code
 if __name__ == '__main__':
 
-    # file_path=''
+    file_path = 'C:\\DragonFly\\Conf\\MachineCalibration.cfg'
+    destination_dir = 'C:\\DragonFly\\Conf\\backup'
     # create application
     app = QtWidgets.QApplication(sys.argv)
     # create form and init UI
@@ -173,5 +210,6 @@ if __name__ == '__main__':
     ui.pushButton.clicked.connect(choose_file_and_read_resolution)
     ui.pushButton_2.clicked.connect(upgrade_resolution)
     ui.pushButton_3.clicked.connect(finish)
+    ui.backup.clicked.connect(move_file)
     # Run main loop
     sys.exit(app.exec())

@@ -95,6 +95,22 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="backup">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>85</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="backup calibration file"/>
+    </property>
+    <property name="text">
+     <string>backup</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
