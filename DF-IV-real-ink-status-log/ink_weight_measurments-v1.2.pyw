@@ -3,6 +3,36 @@ import csv
 from datetime import datetime
 import schedule
 import time
+from twilio.rest import Client
+
+
+flag = 0
+def alert(CI, DI):
+    # Twilio account details
+    account_sid = 'account_sid'
+    auth_token = 'auth_token'
+    client = Client(account_sid, auth_token)
+    recipients = ['+321321321','+123123123']
+    CI = CI*27/50
+    DI = DI*160/177
+    if CI<=55:
+        print('CI')
+        for recipient in recipients:
+            message = client.messages.create(
+                body=f'Hello from DF-IV NNN! please refil CI i`m almost dry, curent amount {CI}ml!',
+                from_='+321654987', #twilio number
+                to=recipient
+            )
+           # print(message.sid)
+    elif DI<=50:
+        print('DI')
+        for recipient in recipients:
+            message = client.messages.create(
+                body=f'Hello from DF-IV NNN! please refil DI i`m almost dry, curent amount {DI}ml!',
+                from_='+321654987', #twilio number
+                to=recipient
+            )
+          #  print(message.sid)
 
 
 def task():
@@ -29,7 +59,7 @@ def task():
     # connect to plc and open connection
     # you have to put an right IP from your PC 
     # no need in update the port number.
-    plc = pyads.Connection('5.50.121.42.1.1', 801)
+    plc = pyads.Connection('9.99.999.99.1.1', 888)
     plc.open()
     try:
         with open("C:\\Users\\Dragonfly\\Documents\\minimum_param.txt", "r", encoding="utf-8") as file:
@@ -43,6 +73,11 @@ def task():
     # read int value by name
     CI_main_tank = plc.read_by_name("LoadCell.nValue_DINT[1]")
     DI_main_tank = plc.read_by_name("LoadCell.nValue_DINT[2]")
+    if CI_main_tank>55 and DI_main_tank>55:
+        flag = 0
+    elif not flag:
+        flag = 1
+        alert(CI_main_tank,DI_main_tank)
     # read values by group and offset: 
     # first value is group value in hex 
     # second value is offset in hex
